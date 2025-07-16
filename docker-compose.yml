@@ -8,6 +8,7 @@ services:
       - ./server.js:/srv/app/server.js
     ports:
       - 7123:7123
+    user: "${UID}:${GID}"
     working_dir: /srv/app
     command: node server.js --headless --config=dav/config.json
     restart: unless-stopped
