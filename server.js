@@ -129,7 +129,6 @@ const methods = {
 
         response.setHeader('Access-Control-Allow-Methods', allowed_methods);
         response.setHeader('Access-Control-Allow-Credentials','true');
-        response.setHeader('Access-Control-Allow-Headers','Authorization,User-Agent,Content-Type,Accept,Origin,X-Requested-With,Cursor');
 
         response.statusCode = 200;
         response.end();
@@ -501,6 +500,11 @@ const requestHandler = function(request, response) {
     var url_args = getUrlArgs(uri.search || '');
     var method = url_args.method || request.method.toLowerCase();
     var m;
+
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.setHeader('Access-Control-Allow-Headers','*');
+    response.setHeader('Access-Control-Allow-Methods','*');
+    response.setHeader('Access-Control-Allow-Credentials', true);
 
     request.on('error', function(err) {
         console.error(err.stack);
