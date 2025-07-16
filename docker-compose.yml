@@ -1,0 +1,13 @@
+services:
+  tamperdav:
+    container_name: tamperdav
+    build:
+      context: .
+    volumes:
+      - ./dav:/srv/app/dav
+      - ./server.js:/srv/app/server.js
+    ports:
+      - 7123:7123
+    working_dir: /srv/app
+    command: node server.js --headless --config=dav/config.json
+    restart: unless-stopped
