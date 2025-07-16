@@ -506,6 +506,17 @@ const requestHandler = function(request, response) {
     response.setHeader('Access-Control-Allow-Methods','*');
     response.setHeader('Access-Control-Allow-Credentials', true);
 
+    if (request.method === 'OPTIONS') {
+        response.writeHead(200, {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Methods': '*',
+            'Access-Control-Allow-Credentials': 'true'
+        });
+        response.end();
+        return;
+    }
+
     request.on('error', function(err) {
         console.error(err.stack);
     });
